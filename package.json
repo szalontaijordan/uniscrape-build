@@ -1,0 +1,17 @@
+{
+  "name": "uniscrape-build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node install.js server && node install.js ui",
+    "start": "node index.js && cd uniscrape-server && node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodegit": "^0.24.1"
+  }
+}
