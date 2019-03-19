@@ -3,7 +3,7 @@
 
     if (!fs.existsSync(`./uniscrape-${repoId}`)) {
         console.log(`[uniscrape] cloning uniscrape-${repoId}`);
-        const repo = clone(`https://github.com/szalontaijordan/uniscrape-${repoId}.git`, `./uniscrape-${repoId}`, {}, () => {
+        const repo = clone(`https://github.com/szalontaijordan/uniscrape-${repoId}.git`, `./uniscrape-${repoId}`, {}, async () => {
             console.log(`[uniscrape] cloned uniscrape-${repoId}`);
             console.log((await exec('ls')).stdout)
             console.log(`[uniscrape] installing uniscrape-${repoId}`);
