@@ -3,13 +3,15 @@
 
     if (!fs.existsSync(`./uniscrape-${repoId}`)) {
         console.log(`[uniscrape] cloning uniscrape-${repoId}`);
-        const repo = clone(`https://github.com/szalontaijordan/uniscrape-${repoId}.git`, `./uniscrape-${repoId}`, {}, async () => {
-            console.log(`[uniscrape] cloned uniscrape-${repoId}`);
-            console.log((await exec('ls')).stdout)
-            console.log(`[uniscrape] installing uniscrape-${repoId}`);
-            const { stdout, stderr } = await exec(`cd uniscrape-${repoId} && npm install && npm run build`);
 
-            stdout ? console.log(stdout) : (() => { throw stderr })();
+        await new Promise((resolve, reject) => {
+            const repo = clone(`https://github.com/szalontaijordan/uniscrape-${repoId}.git`, `./uniscrape-${repoId}`, {}, async () => {
+                console.log(`[uniscrape] cloned uniscrape-${repoId}`);
+                console.log(`[uniscrape] installing uniscrape-${repoId}`);
+
+                const { stdout, stderr } = await exec(`cd uniscrape-${repoId} && npm install && npm run build`);
+                stdout ? resolve(stdout) : reject(stderr);
+            });
         });
     } else {
         console.log(`[uniscrape] uniscrape-${repoId} already exists`);
