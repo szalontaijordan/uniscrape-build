@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node install.js server && node install.js ui",
+    "build-server": "cd uniscrape-server && npm install && cd ..",
+    "build-ui": "cd uniscrape-ui && npm install && cd ..",
+    "build": "npm run build-server && npm run build-ui",
+    "postinstall": "node install.js server && node install.js ui && npm run build",
     "start": "node index.js && cd uniscrape-server && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
