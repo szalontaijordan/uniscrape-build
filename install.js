@@ -9,7 +9,7 @@
                 console.log(`[uniscrape] cloned uniscrape-${repoId}`);
                 console.log(`[uniscrape] installing uniscrape-${repoId}`);
 
-                const { stdout, stderr } = await exec(`cd uniscrape-${repoId} && npm install && npm run build`);
+                const { stdout, stderr } = await exec(`cd uniscrape-${repoId} && npm install`);
                 stdout ? resolve(stdout) : reject(stderr);
             });
         });
